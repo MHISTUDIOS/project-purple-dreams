@@ -1,0 +1,54 @@
+{
+  "$schema": "https://github.com/glzr-io/zebar/raw/v3.0.1/resources/zpack-schema.json",
+  "name": "overline-zebar",
+  "version": "0.0.0",
+  "description": "Fully featured topbar using React+Vite, Tailwind & Framer Motion. ",
+  "tags": [],
+  "previewImages": [
+    "resources/preview-image-1.png"
+  ],
+  "repositoryUrl": "https://github.com/mushfikurr/overline-zebar",
+  "widgets": [
+    {
+      "name": "overline",
+      "htmlPath": "./dist/index.html",
+      "zOrder": "normal",
+      "shownInTaskbar": false,
+      "focused": false,
+      "resizable": false,
+      "transparent": true,
+      "includeFiles": [
+        "dist/index.html",
+        "dist/assets/**",
+        "dist/config.json",
+        "dist/geistMono/**",
+        "README.md"
+      ],
+      "caching": {
+        "defaultDuration": 604800,
+        "rules": []
+      },
+      "privileges": {
+        "shellCommands": []
+      },
+      "presets": [
+        {
+          "name": "default",
+          "anchor": "top_center",
+          "offsetX": "5px",
+          "offsetY": "4px",
+          "width": "1910px",
+          "height": "36px",
+          "monitorSelection": {
+            "type": "all"
+          },
+          "dockToEdge": {
+            "enabled": false,
+            "edge": null,
+            "windowMargin": "0px"
+          }
+        }
+      ]
+    }
+  ]
+}

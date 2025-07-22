@@ -1,0 +1,25 @@
+:root {
+  /* --border: oklch(0.35 0.024 261.7); */
+  /* --border: #4245f5; */
+  --border: oklch(51.65% 0.253 272.46);
+  --background: oklch(22.95% 0.02501 287.77);
+  --background-deeper: oklch(16.372% 0.02913 285.971);
+  --button: oklch(31.976% 0.04078 291.89);
+  /* --button-border: oklch(39.667% 0.0586 286.011); */
+  --button-border: oklch(51.65% 0.253 272.46);
+
+  /* Primary Colors */
+  --primary: oklch(42.217% 0.0759 281.69);
+  /* --primary-border: oklch(56.894% 0.08268 285.143); */
+  --primary-border: oklch(51.65% 0.253 272.46);
+
+  /* Text and Icon Colors */
+  --text: oklch(77.475% 0.09079 287.65);
+  --text-muted: oklch(73.531% 0.05611 289.624);
+  --icon: oklch(38.388% 0.10617 280.175);
+
+  /* Feedback Colors */
+  --success: #a3be8c;
+  --danger: #bf616a;
+  --warning: #d08770;
+}

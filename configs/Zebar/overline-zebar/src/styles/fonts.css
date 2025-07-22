@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/geistMono/GeistMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/geistMono/GeistMono-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/geistMono/GeistMono-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+} 
