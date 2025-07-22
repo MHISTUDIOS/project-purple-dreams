@@ -3,10 +3,10 @@
 # File: install.ps1
 # Usage:
 #   From PowerShell console:  .\install.ps1
-#   Remote install:  iwr https://raw.githubusercontent.com/yourname/project-purple-dreams/main/install.ps1 | iex
+#   Remote install:  iwr https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/main/install.ps1 | iex
 
 # === Configuration Paths ===
-$BASE_URL  = 'https://raw.githubusercontent.com/yourname/project-purple-dreams/main/configs'
+$BASE_URL  = 'https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/main/configs'
 $GZ_PATH   = "$env:APPDATA\glazewm\config.yaml"
 $FL_PATH   = "$env:APPDATA\FlowLauncher\Settings.json"
 
