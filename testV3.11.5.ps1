@@ -49,8 +49,8 @@ function Download-File {
 }
 
 function Install-All {
-    Download-File -Name 'GlazeWM config'    -Url "$BASE_URL/glaze/config.yaml"     -Destination $GZ_PATH
-    Download-File -Name 'FlowLauncher settings' -Url "$BASE_URL/flowlauncher/Settings.json" -Destination $FL_PATH
+    Download-File -Name 'GlazeWM config'    -Url "$BASE_URL/glazewm/config.yaml"     -Destination $GZ_PATH
+    Download-File -Name 'FlowLauncher config' -Url "$BASE_URL/flowlauncher/purple_dreams.xaml" -Destination $FL_PATH
 }
 
 function Remove-All {
