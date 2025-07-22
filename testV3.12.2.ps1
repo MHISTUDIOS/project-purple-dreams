@@ -28,13 +28,13 @@ function Pause-ForKey {
 function Download-File {
     param([string]$Name, [string]$Url, [string]$Destination)
     Show-AsciiArt
-    Write-Host "[INFO] Downloading $Name..." -ForegroundColor Cyan
+    Write-Host "[INFO] Downloading $($Name)..." -ForegroundColor Cyan
     Write-Host "     $Url" -ForegroundColor DarkGray
     try {
         Invoke-WebRequest -Uri $Url -OutFile $Destination -UseBasicParsing -ErrorAction Stop
-        Write-Host "`n[OK] $Name saved to $Destination" -ForegroundColor Green
+        Write-Host "`n[OK] $($Name) saved to $Destination" -ForegroundColor Green
     } catch {
-        Write-Host "`n[ERROR] Failed to download $Name:`n    $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "`n[ERROR] Failed to download $($Name):`n    $($_.Exception.Message)" -ForegroundColor Red
     }
     Pause-ForKey
 }
@@ -42,33 +42,33 @@ function Download-File {
 function Download-And-Run-Installer {
     param([string]$Name, [string]$Url)
     Show-AsciiArt
-    Write-Host "[INFO] Downloading installer for $Name..." -ForegroundColor Cyan
+    Write-Host "[INFO] Downloading installer for $($Name)..." -ForegroundColor Cyan
     Write-Host "     $Url" -ForegroundColor DarkGray
     $ext = [IO.Path]::GetExtension($Url)
-    $tmp = "$env:TEMP\$Name-installer$ext"
+    $tmp = "$env:TEMP\$($Name)-installer$ext"
     try {
         Invoke-WebRequest -Uri $Url -OutFile $tmp -UseBasicParsing -ErrorAction Stop
     } catch {
-        Write-Host "[ERROR] Could not download installer for $Name:`n    $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "[ERROR] Could not download installer for $($Name):`n    $($_.Exception.Message)" -ForegroundColor Red
         Pause-ForKey; return
     }
-    Write-Host "[INFO] Running installer for $Name..." -ForegroundColor Cyan
+    Write-Host "[INFO] Running installer for $($Name)..." -ForegroundColor Cyan
     try {
         if ($ext -ieq '.msi') {
             Start-Process 'msiexec.exe' -ArgumentList "/i `"$tmp`" /qn /norestart" -Wait
         } else {
             Start-Process -FilePath $tmp -ArgumentList '/SILENT','/VERYSILENT','/SUPPRESSMSGBOXES' -Wait
         }
-        Write-Host "[OK] $Name installed." -ForegroundColor Green
+        Write-Host "[OK] $($Name) installed." -ForegroundColor Green
     } catch {
-        Write-Host "[ERROR] Installer for $Name failed:`n    $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "[ERROR] Installer for $($Name) failed:`n    $($_.Exception.Message)" -ForegroundColor Red
     }
     Pause-ForKey
 }
 
 function Install-All {
-    Download-File -Name 'GlazeWM config'        -Url "$BASE_URL/glazewm/config.yaml"           -Destination $GZ_PATH
-    Download-File -Name 'FlowLauncher theme'     -Url "$BASE_URL/flowlauncher/purple_dreams.xaml" -Destination $FL_PATH
+    Download-File -Name 'GlazeWM config'      -Url "$BASE_URL/glazewm/config.yaml"            -Destination $GZ_PATH
+    Download-File -Name 'FlowLauncher theme'   -Url "$BASE_URL/flowlauncher/purple_dreams.xaml" -Destination $FL_PATH
 }
 
 function Remove-All {
@@ -89,9 +89,9 @@ function Check-Applications {
     Show-AsciiArt
     Write-Host '[INFO] Checking installed applications...' -ForegroundColor Cyan
     $apps = @(
-        @{ Name='GlazeWM';       Path="$env:APPDATA\glazewm";    Installer='glazewm.exe' },
-        @{ Name='FlowLauncher';   Path="$env:APPDATA\FlowLauncher"; Installer='flowlauncher.exe' },
-        @{ Name='Zebar';          Path="$env:APPDATA\Zebar";       Installer='zebar.msi' }
+        @{ Name='GlazeWM';     Path="$env:APPDATA\glazewm";      Installer='glazewm.exe' },
+        @{ Name='FlowLauncher'; Path="$env:APPDATA\FlowLauncher"; Installer='flowlauncher.exe' },
+        @{ Name='Zebar';        Path="$env:APPDATA\Zebar";       Installer='zebar.msi' }
     )
     $missing = $apps | Where-Object { -not (Test-Path $_.Path) }
     foreach ($app in $apps) {
@@ -116,10 +116,10 @@ function Check-Applications {
 # === Main Menu Loop ===
 while ($true) {
     Show-AsciiArt
-    Write-Host '1) Install all configurations'       -ForegroundColor White
-    Write-Host '2) Remove all configurations'        -ForegroundColor White
-    Write-Host '3) Check/install applications'       -ForegroundColor White
-    Write-Host '4) Exit'                             -ForegroundColor White
+    Write-Host '1) Install all configurations'     -ForegroundColor White
+    Write-Host '2) Remove all configurations'      -ForegroundColor White
+    Write-Host '3) Check/install applications'    -ForegroundColor White
+    Write-Host '4) Exit'                          -ForegroundColor White
     $choice = Read-Host 'Select an option'
     switch ($choice) {
         '1' { Install-All; continue }
