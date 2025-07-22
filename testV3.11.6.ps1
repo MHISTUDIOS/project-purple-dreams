@@ -6,7 +6,7 @@
 #   Remote install:  iwr https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/main/install.ps1 | iex
 
 # === Configuration Paths ===
-$BASE_URL = 'https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/main/configs'
+$BASE_URL = 'https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/refs/heads/main/configs'
 $GZ_PATH  = "$env:APPDATA\glazewm\config.yaml"
 $FL_PATH  = "$env:APPDATA\FlowLauncher\Settings.json"
 
