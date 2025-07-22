@@ -6,8 +6,8 @@
 #   Remote install:  iwr https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/main/install.ps1 | iex
 
 # === Configuration Paths ===
-$BASE_URL       = 'https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/refs/heads/main/configs'
-$INSTALLER_BASE = 'https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/refs/heads/main/installers'
+$BASE_URL       = 'https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/main/configs'
+$INSTALLER_BASE = 'https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/main/installers'
 $GZ_PATH        = "$env:APPDATA\glazewm\config.yaml"
 $FL_PATH        = "$env:APPDATA\FlowLauncher\purple_dreams.xaml"
 
@@ -52,15 +52,21 @@ function Download-And-Run-Installer {
         Invoke-WebRequest -Uri $url -OutFile $tmp -UseBasicParsing -ErrorAction Stop
     } catch {
         Write-Host "[ERROR] Could not download installer for $($Name):`n    $($_.Exception.Message)" -ForegroundColor Red
-        Pause-ForKey; return
+        Pause-ForKey
+        return
     }
     Write-Host "[INFO] Installing $($Name) silently..." -ForegroundColor Cyan
     try {
         if ($ext -ieq '.msi') {
-            Start-Process 'msiexec.exe' -ArgumentList "/i `"$tmp`" /quiet /norestart" -Wait -NoNewWindow
+            # MSI installer
+            Start-Process 'msiexec.exe' -ArgumentList "/i `"$tmp`" /quiet /norestart" -Verb runAs -Wait -NoNewWindow
+        } elseif ($ext -ieq '.exe') {
+            # Official EXE installer with elevation
+            $args = '/S'
+            Write-Host "[INFO] Running EXE installer with args: $args" -ForegroundColor Gray
+            Start-Process -FilePath $tmp -ArgumentList $args -Verb runAs -Wait -NoNewWindow
         } else {
-            # Unified silent flags for EXE installers
-            Start-Process -FilePath $tmp -ArgumentList '/S','/VERYSILENT','/SUPPRESSMSGBOXES' -Wait -NoNewWindow
+            Throw "Unsupported installer extension: $ext"
         }
         Write-Host "[OK] $($Name) installed." -ForegroundColor Green
     } catch {
@@ -71,7 +77,7 @@ function Download-And-Run-Installer {
 
 # === Config Install ===
 function Install-All {
-    Download-File -Name 'GlazeWM config'      -Url "$BASE_URL/glazewm/config.yaml"            -Destination $GZ_PATH
+    Download-File -Name 'GlazeWM config'      -Url "$BASE_URL/glaze/config.yaml"            -Destination $GZ_PATH
     Download-File -Name 'FlowLauncher theme'  -Url "$BASE_URL/flowlauncher/purple_dreams.xaml" -Destination $FL_PATH
 }
 
