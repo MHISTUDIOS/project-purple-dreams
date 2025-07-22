@@ -1,20 +1,20 @@
 # Riced Windows Installer PowerShell Script
-# Version 2.2 — Real Download with Progress Bar
+# Version 2.3 — Simplified Download Stub
 # File: install.ps1
 # Usage:
 #   From PowerShell console:  .\install.ps1
-#   Remote install:  iwr https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/main/install.ps1 | iex
+#   Remote install:  iwr https://raw.githubusercontent.com/yourname/project-purple-dreams/main/install.ps1 | iex
 
 # === Configuration Paths ===
-$BASE_URL  = 'https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/main/configs'
-$GZ_PATH   = "$env:APPDATA\glazewm\config.yaml"
-$FL_PATH   = "$env:APPDATA\FlowLauncher\Settings.json"
+$BASE_URL = 'https://raw.githubusercontent.com/yourname/project-purple-dreams/main/configs'
+$GZ_PATH  = "$env:APPDATA\glazewm\config.yaml"
+$FL_PATH  = "$env:APPDATA\FlowLauncher\Settings.json"
 
 # === Functions ===
 function Show-AsciiArt {
     Clear-Host
     Write-Host '===============================================' -ForegroundColor Magenta
-    Write-Host '        RICED WINDOWS INSTALLER v2.2          ' -ForegroundColor Magenta
+    Write-Host '        RICED WINDOWS INSTALLER v2.3          ' -ForegroundColor Magenta
     Write-Host '===============================================' -ForegroundColor Magenta
     Write-Host
 }
@@ -32,25 +32,21 @@ function Download-File {
         [Parameter(Mandatory)] [string]$Destination
     )
     Show-AsciiArt
-    Write-Host "[INFO] Downloading $($Name):" -ForegroundColor Cyan
-    Write-Host "     URL: $Url" -ForegroundColor DarkGray
+    Write-Host "[INFO] Downloading $($Name)" -ForegroundColor Cyan
+    Write-Host "     $Url" -ForegroundColor DarkGray
 
-    # Use Invoke-WebRequest with built-in progress
     try {
-        Invoke-WebRequest -Uri $Url -OutFile $Destination -UseBasicParsing
+        Invoke-WebRequest -Uri $Url -OutFile $Destination -UseBasicParsing -ErrorAction Stop
+        Write-Host "`n[OK] $($Name) saved to $Destination" -ForegroundColor Green
     } catch {
-        Write-Host "[ERROR] Failed to download $Name" -ForegroundColor Red
-        Pause-ForKey
-        return
+        Write-Host "[ERROR] Failed to download $($Name)" -ForegroundColor Red
     }
-
-    Write-Host "`n[OK] $($Name) saved to $Destination" -ForegroundColor Green
     Pause-ForKey
 }
 
 function Install-All {
-    Download-File -Name 'GlazeWM config'    -Url "$BASE_URL/glazewm/config.yaml"     -Destination $GZ_PATH
-    Download-File -Name 'FlowLauncher config' -Url "$BASE_URL/flowlauncher/purple_dreams.xaml" -Destination $FL_PATH
+    Download-File -Name 'GlazeWM config'        -Url "$BASE_URL/glaze/config.yaml"             -Destination $GZ_PATH
+    Download-File -Name 'FlowLauncher settings' -Url "$BASE_URL/flowlauncher/Settings.json"   -Destination $FL_PATH
 }
 
 function Remove-All {
