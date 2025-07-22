@@ -14,14 +14,12 @@ $FL_PATH  = "$env:APPDATA\FlowLauncher\Settings.json"
 function Show-AsciiArt {
     Clear-Host
     Write-Host '===============================================' -ForegroundColor Magenta
-    Write-Host '        RICED WINDOWS INSTALLER v2.3          ' -ForegroundColor Magenta
+    Write-Host '        RICED WINDOWS INSTALLER v2.4          ' -ForegroundColor Magenta
     Write-Host '===============================================' -ForegroundColor Magenta
     Write-Host
 }
 
 function Pause-ForKey {
-    Write-Host
-    Write-Host 'Press Enter to continue...' -ForegroundColor DarkGray
     [void][System.Console]::ReadLine()
 }
 
@@ -32,21 +30,23 @@ function Download-File {
         [Parameter(Mandatory)] [string]$Destination
     )
     Show-AsciiArt
-    Write-Host "[INFO] Downloading $($Name)" -ForegroundColor Cyan
+    Write-Host "[INFO] Downloading $($Name)..." -ForegroundColor Cyan
     Write-Host "     $Url" -ForegroundColor DarkGray
 
     try {
         Invoke-WebRequest -Uri $Url -OutFile $Destination -UseBasicParsing -ErrorAction Stop
         Write-Host "`n[OK] $($Name) saved to $Destination" -ForegroundColor Green
     } catch {
-        Write-Host "[ERROR] Failed to download $($Name)" -ForegroundColor Red
+        Write-Host "`n[ERROR] Failed to download $($Name):" -ForegroundColor Red
+        Write-Host "    $($_.Exception.Message)" -ForegroundColor DarkRed
     }
+    Write-Host 'Press Enter to continue...' -ForegroundColor DarkGray
     Pause-ForKey
 }
 
 function Install-All {
-    Download-File -Name 'GlazeWM config'        -Url "$BASE_URL/glazewm/config.yaml"             -Destination $GZ_PATH
-    Download-File -Name 'FlowLauncher config' -Url "$BASE_URL/flowlauncher/purple_dreams.xaml"   -Destination $FL_PATH
+    Download-File -Name 'GlazeWM config'        -Url "$BASE_URL/glaze/config.yaml"           -Destination $GZ_PATH
+    Download-File -Name 'FlowLauncher settings' -Url "$BASE_URL/flowlauncher/Settings.json" -Destination $FL_PATH
 }
 
 function Remove-All {
@@ -64,6 +64,7 @@ function Remove-All {
     } else {
         Write-Host '[-] FlowLauncher settings not found' -ForegroundColor Red
     }
+    Write-Host 'Press Enter to continue...' -ForegroundColor DarkGray
     Pause-ForKey
 }
 
@@ -75,15 +76,18 @@ while ($true) {
     Write-Host '3) Exit'                       -ForegroundColor White
     $choice = Read-Host 'Select an option'
     switch ($choice) {
-        '1' { Install-All }
-        '2' { Remove-All }
-        '3' { break }
+        '1' { Install-All; continue }
+        '2' { Remove-All; continue }
+        '3' {
+            Show-AsciiArt
+            Write-Host 'Goodbye!' -ForegroundColor DarkGray
+            Start-Sleep -Seconds 1
+            return
+        }
         default {
             Write-Host 'Invalid choice, please try again.' -ForegroundColor Red
+            Write-Host 'Press Enter to continue...' -ForegroundColor DarkGray
             Pause-ForKey
         }
     }
 }
-
-Write-Host 'Goodbye!' -ForegroundColor DarkGray
-Start-Sleep -Seconds 1
