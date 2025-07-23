@@ -38,7 +38,7 @@ First, you need to close all the necessary programs for correct installation.
 To install the script using my script, you need to open the Windows console and enter the following line in PowerShell:
 
 ```powershell
- iwr https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/refs/heads/main/installerV1.1.1.ps1  -UseBasicParsing | iex
+ iwr https://raw.githubusercontent.com/MHISTUDIOS/project-purple-dreams/refs/heads/main/installerV1.1.2.ps1  -UseBasicParsing | iex
 ```
   
 Then press Enter. 
