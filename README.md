@@ -1,6 +1,7 @@
 # <h1 style="text-align: center; font-weight: 800; font-style: italic;">purple dreams</h1>
 <p style="text-align: center; font-style: italic;">windows 11 ricing konfigs bundle</p>
-____
+
+___
 ## *about:*
 *project: purple dreams (or P:P.D.)* is my first attempt and experience at making my Windows 11 OS more beautiful and, in part, more practical. 
 The repository consists of configurations, styles, themes, and widgets for programs such as:
