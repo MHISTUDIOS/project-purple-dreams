@@ -1,7 +1,6 @@
-# <h1 style="text-align: center; font-weight: 800; font-style: italic;">purple dreams</h1>
-<p style="text-align: center; font-style: italic;">windows 11 ricing konfigs bundle</p>
+# <p align="center">purple dreams</p> 
+### <p align="center"> *windows 11 ricing konfigs bundle*</p>
 
-___
 ## *about:*
 *project: purple dreams (or P:P.D.)* is my first attempt and experience at making my Windows 11 OS more beautiful and, in part, more practical. 
 The repository consists of configurations, styles, themes, and widgets for programs such as:
@@ -17,11 +16,11 @@ The repository consists of configurations, styles, themes, and widgets for progr
 
 The goal of the project is to make the system more beautiful and similar, both visually and practically, to the hyprland shell on Arch Linux.
 ___
-![[img1.png]]
+![photo one](/img1.png)
 
 A minimalist look, transparency, and a convenient window manager that will make you practically forget about your mouse. As the name suggests, everything is designed with an emphasis on purple and magenta shades to make the desktop look as attractive as possible and turn boring text editing or programming into something pleasing to the eye and engaging.
 
-![[img2.png]]
+![photo two](img2.png)
 
 ___
 ## *important info:*
@@ -33,7 +32,7 @@ ___
 ## *instalation:*
 
 First, you need to close all the necessary programs for correct installation. 
-(Next, choose your the installation method).
+> (Next, choose your the installation method).
 
 ## *via script - installer:*
 To install the script using my script, you need to open the Windows console and enter the following line in PowerShell:
@@ -71,17 +70,17 @@ After installation (via script or manually), you need to restart the programs fo
 
 You will only need to select the desired theme in flowLauncher and enable the desired widget in Zebar 
 
-*(CAUTION - the widget is a modified overline-zebar with custom colors and some rules! The name may be the same if you had this widget installed before!)*
+> *(CAUTION - the widget is a modified overline-zebar with custom colors and some rules! The name may be the same if you had this widget installed before!)*
 
 ---
 ## *BONUS:*
 As a bonus for those who have Wallpaper Engine and like my wallpapers, here is a link to the workshop:
 
-https://steamcommunity.com/sharedfiles/filedetails/?id=3279043526
+#### [click here :з](https://steamcommunity.com/sharedfiles/filedetails/?id=3279043526)
 ---
 
 Thank you very much for your attention and for installing it. If you see any errors or bugs, please write to issues. I will definitely try to fix everything.
 
 ------
-<h3 style="text-align: center;">made with ❤️ to community</h3>
+<h3 align="center">made with ❤️ to community</h3>
 
