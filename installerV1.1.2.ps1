@@ -12,15 +12,19 @@ $GZ_PATH         = "$env:USERPROFILE\.glzr\glazewm\config.yaml"
 $ZB_CONFIG_PATH  = "$env:USERPROFILE\.glzr\zebar\settings.json"
 $ZB_WIDGET_DIR   = "$env:USERPROFILE\.glzr\zebar\overline-zebar"
 $WT_PATH         = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
-$FL_PATH         = "$env:APPDATA\FlowLauncher\purple_dreams.xaml"
+$FL_PATH         = "$env:APPDATA\FlowLauncher\Themes\purple_dreams.xaml"
 
 # === Helper Functions ===
 function Show-Header {
     Clear-Host
-    Write-Host '===============================================' -ForegroundColor Magenta
-    Write-Host '     RICED WINDOWS INSTALLER v3.5              ' -ForegroundColor Magenta
-    Write-Host '===============================================' -ForegroundColor Magenta
+    Write-Host '    ____             __       __   ____                                ' -ForegroundColor Magenta
+    Write-Host '   / __ \____ ______/ /____  / /  / __ \________  ____ _____ ___  _____' -ForegroundColor Magenta
+    Write-Host '  / /_/ / __ `/ ___/ __/ _ \/ /  / / / / ___/ _ \/ __ `/ __ `__ \/ ___/' -ForegroundColor Magenta
+    Write-Host ' / ____/ /_/ (__  / /_/  __/ /  / /_/ / /  /  __/ /_/ / / / / / (__  ) ' -ForegroundColor Magenta
+    Write-Host '/_/    \__,_/____/\__/\___/_/  /_____/_/   \___/\__,_/_/ /_/ /_/____/  ' -ForegroundColor Magenta
+    Write-Host '                               ricing windows 11 configs bundle        ' -ForegroundColor Magenta 
     Write-Host
+
 }
 function Pause-ForKey {
     Write-Host; Write-Host 'Press Enter to continue...' -ForegroundColor DarkGray; [void][Console]::ReadLine()
@@ -110,7 +114,7 @@ function Install-Configs {
     # Deploy
     Download-File -Name 'GlazeWM config'        -Url "$BASE_URL/glazewm/config.yaml"              -Dest $GZ_PATH
     Download-ZebarWidget
-    Download-File -Name 'Zebar settings'        -Url "$BASE_URL/zebar/settings.json"            -Dest $ZB_CONFIG_PATH
+    Download-File -Name 'Zebar settings'        -Url "$BASE_URL/Zebar/settings.json"            -Dest $ZB_CONFIG_PATH
     Download-File -Name 'Windows Terminal JSON' -Url "$BASE_URL/windowsTerminal/settings.json" -Dest $WT_PATH
     Download-File -Name 'FlowLauncher theme'    -Url "$BASE_URL/flowlauncher/purple_dreams.xaml" -Dest $FL_PATH
 }
